@@ -25,6 +25,7 @@ for(let activeLink of activeLinks){
 
     for(let activeArticle of activeArticles){
   activeLink.classList.remove('active');
+}
 
   /* [DONE] get 'href' attribute from the clicked link */
     
@@ -60,23 +61,35 @@ function generateTitleLinks(){
 
   /* remove contents of titleList */
 
-  const titleList = document.querySelector(optTitleListSelector)
+  const titleList = document.querySelector(optTitleListSelector);
   function clearMessages(){
 	titleList.innerHTML = '';
 }
 
   /* for each article */
 
+  const articles = document.querySelectorAll(optArticleSelector);
+  for(let  of ){
+    
+  }
+
     /* get the article id */
 
+    const articleId = document.getAttribute(id)
+
     /* find the title element */
+
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
     /* get the title from the title element */
 
     /* create HTML of the link */
 
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+
     /* insert link into titleList */
 
+    titleList.innerHTML = titleList.innerHTML + linkHTML;
 }
 
 generateTitleLinks();
