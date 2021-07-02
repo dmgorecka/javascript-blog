@@ -9,21 +9,21 @@ function titleClickHandler(event){
    /* [DONE] remove class 'active' from all article links  */
 
     const activeLinks = document.querySelectorAll('.titles a.active');
-    for(let activeLink of activeLinks){
-    activeLink.classList.remove('active');
-  }
+      for(let activeLink of activeLinks){
+      activeLink.classList.remove('active');
+    }
 
   /* [DONE] add class 'active' to the clicked link */
 
     console.log('clickedElement:', clickedElement);
-    activeLink.classList.add('active');
+    clickedElement.classList.add('active');
 
   /* [DONE] remove class 'active' from all articles */
 
     const activeArticles = document.querySelectorAll('article.post');
-    for(let activeArticle of activeArticles){
-    activeArticle.classList.remove('active');
-    }
+      for(let activeArticle of activeArticles){
+      activeArticle.classList.remove('active');
+      }
 
   /* [DONE] get 'href' attribute from the clicked link */
     
@@ -82,9 +82,9 @@ function generateTitleLinks(customerSelector = ''){
 
     const links = document.querySelectorAll('.titles a');
     console.log (links)
-    for(let link of links){
-    link.addEventListener('click', titleClickHandler);
-  }
+      for(let link of links){
+      link.addEventListener('click', titleClickHandler);
+    }
 }
 
   generateTitleLinks();
