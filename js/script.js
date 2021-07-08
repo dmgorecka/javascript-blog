@@ -1,3 +1,6 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 'use strict';
 
 function titleClickHandler(event){
@@ -49,7 +52,7 @@ const optTagsListSelector = '.tags.list';
 const optCloudClassCount = 5;
 const optCloudClassPrefix = 'tag-size-';
 const optAuthorsListSelector = 'authors.list',
-const optAuthorClassCount = 5;
+  optAuthorClassCount = 5;
 const optAuthorClassPrefix = 'author-size-';
 
 function clearMessages(){
@@ -103,7 +106,7 @@ function calculateTagsParams(tags){
   const params = {
     max: 0,
     min: 999999
-  }
+  };
   console.log(params);
   for(let tag in tags){
     console.log(tag + ' is used ' + tags[tag] + ' times');
@@ -115,7 +118,7 @@ function calculateTagsParams(tags){
     }
   }
   console.log(tags);
-  return: params;
+  return params;
 }
 
 function calculateTagClass(count, params){
@@ -191,7 +194,7 @@ function generateTags(){
 
   /* [NEW] create variable for all links HTML code */
   const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams)
+  console.log('tagsParams:', tagsParams);
   let allTagsHTML = '';
 
   /* [NEW] START LOOP: for each tag in allTags: */
@@ -297,31 +300,31 @@ function addClickListenersToTags(){
 addClickListenersToTags();
 
 function calculateAuthorsParams(authors){
-	const params = {
-		min: 999999,
-		max: 0
-	}
-	console.log(params);
-    for(let author in authors){
-      console.log(author + ' is used ' + authors[author] + ' times');
-      if(authors[author] > params.max){
-        params.max = authors[author];
-      }
-      if(authors[author] < params.min){
-        params.min = authors[author];
-      }
+  const params = {
+    min: 999999,
+    max: 0
+  };
+  console.log(params);
+  for(let author in authors){
+    console.log(author + ' is used ' + authors[author] + ' times');
+    if(authors[author] > params.max){
+      params.max = authors[author];
     }
-    console.log(authors);
-    return params;
+    if(authors[author] < params.min){
+      params.min = authors[author];
+    }
   }
+  console.log(authors);
+  return params;
+}
 
-  function calculateAuthorClass(count, params){
-    const normalizedCount = count - params.min;
-    const normalizedMax = params.max - params.min;
-    const percentage = normalizedCount / normalizedMax;
-    const classNumber = Math.floor(percentage * (optAuthorClassCount - 1) + 1);
-    return optAuthorClassPrefix + classNumber;
-  }
+function calculateAuthorClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optAuthorClassCount - 1) + 1);
+  return optAuthorClassPrefix + classNumber;
+}
 
 function generateAuthors(){
 
