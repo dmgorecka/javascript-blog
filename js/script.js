@@ -381,7 +381,7 @@ function authorClickHandler(event){
     console.log(authorLinkHref);
   }
 
-  generateTitleLinks('[post-author="' + tag + '"]');
+  generateTitleLinks('[post-author="' + author + '"]');
 
 }
 
