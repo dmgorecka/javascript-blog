@@ -8,7 +8,8 @@ const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   articleTagLink: Handlebars.compile(document.querySelector('#template-article-tag-link').innerHTML),
   articleAuthorLink: Handlebars.compile(document.querySelector('#template-article-author-link').innerHTML),
-}
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+};
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -174,7 +175,8 @@ function generateTags(){
 
       /* generate HTML of the link */
 
-      const linkHTMLtag = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const linkHTMLData = {id: tag};
+      const linkHTML = templates.articleTagLink(linkHTMLData);
 
       /* add generated code to html variable */
 
@@ -203,7 +205,7 @@ function generateTags(){
   /* [NEW] create variable for all links HTML code */
   const tagsParams = calculateTagsParams(allTags);
   console.log('tagsParams:', tagsParams);
-  let allTagsHTML = '';
+  const allTagsData = {tags: []};
 
   /* [NEW] START LOOP: for each tag in allTags: */
   for(let tag in allTags){
@@ -215,13 +217,17 @@ function generateTags(){
 
     const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '  ' + ' </a></li>';
     console.log('tagLinkHTML:', tagLinkHTML);
-    allTagsHTML += tagLinkHTML;
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams)
+    });
   }
   /* [NEW] END LOOP: for each tag in allTags: */
 
   /* [NEW] add html from allTags to tagList */
-  tagList.innerHTML = allTagsHTML;
-  console.log(allTags);
+  tagList.innerHTML = templates.tagCloudLink(allTagsData);
+  console.log(allTagsData);
 
 }
 
@@ -352,7 +358,8 @@ function generateAuthors(){
     const articleAuthors = article.getAttribute('post-author');
     console.log(articleAuthors);
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTMLauthor = '<li><a href="#author-' + articleAuthors + '">' + articleAuthors + '</a></li>';
+    const linkHTMLData = {id: author};
+    const linkHTML = templates.articleAuthorLink(linkHTMLData);
 
     html = html + linkHTMLauthor;
     console.log(html);
