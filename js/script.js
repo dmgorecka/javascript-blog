@@ -384,7 +384,7 @@ function generateAuthors(){
     //allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ')</a></li>';
     allAuthorsData.authors.push({
       author: author,
-      count: allAuthorData[author],
+      count: allAuthorsData[author],
       className: calculateAuthorClass(allAuthorsData[author], authorsParams)
 
     });
