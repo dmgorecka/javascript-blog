@@ -361,6 +361,12 @@ function generateAuthors(){
     const linkHTMLData = {id: author};
     const linkHTML = templates.articleAuthorLink(linkHTMLData);
 
+    if(!allAuthors.hasOwnProperty(author)){
+      allAuthors[author] = 1;
+    } else {
+      allAuthor[author]++;
+    }
+
     html = html + linkHTML;
     console.log(html);
 
