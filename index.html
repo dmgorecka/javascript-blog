@@ -190,7 +190,7 @@
         </div>
         <script id="template-tag-cloud-link" type="text/x-handlebars-template">
             {{#each tags}}
-            <li><a href="#tag-{{ tag }}"><span>{{ tag }}</span></a></li>
+            <li><a href="#tag-{{ tag }}" class = "{{className}}"><span>{{ tag }} ({{count}})</span></a></li>
             {{/each}}
         </script>
         <script id="template-article-author-link" type="text/x-handlebars-template">

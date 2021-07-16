@@ -216,7 +216,7 @@ function generateTags(){
     // console.log('taglinkHTML:', tagLinkHTML);
 
     const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '  ' + ' </a></li>';
-    console.log('tagLinkHTML:', tagLinkHTML);
+    //console.log('tagLinkHTML:', tagLinkHTML);
     allTagsData.tags.push({
       tag: tag,
       count: allTags[tag],
@@ -329,7 +329,7 @@ function calculateAuthorsParams(authors){
       params.min = authors[author];
     }
   }
-  console.log(authors);
+  console.log(params);
   return params;
 }
 
@@ -343,7 +343,7 @@ function calculateAuthorClass(count, params){
 
 function generateAuthors(){
   /* [NEW] create a new variable allAuthors with an empty object */
-  let allAuthors = {};
+  let allAuthorsData = {authors:[]};
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   console.log(articles);
@@ -351,20 +351,19 @@ function generateAuthors(){
   for(let article of articles) {
     /* find authors wrapper */
     const wrapperAuthors = article.querySelector(optArticleAuthorSelector);
-    console.log({wrapperAuthors});
+    console.log(wrapperAuthors);
     /* make html variable with empty string */
     let html = '';
     /* get authors from post-author attribute */
-    const articleAuthors = article.getAttribute('post-author');
-    console.log(articleAuthors);
+    const author = article.getAttribute('post-author');
     /* insert HTML of all the links into the tags wrapper */
     const linkHTMLData = {id: author};
     const linkHTML = templates.articleAuthorLink(linkHTMLData);
 
-    if(!allAuthors.hasOwnProperty(author)){
-      allAuthors[author] = 1;
+    if(!allAuthorsData.hasOwnProperty(author)){
+      allAuthorsData[author] = 1;
     } else {
-      allAuthor[author]++;
+      allAuthorsData[author]++;
     }
 
     html = html + linkHTML;
@@ -376,11 +375,19 @@ function generateAuthors(){
   /* END LOOP: for every article: */
   /* [NEW] find list of authors in right column */
   const authorList = document.querySelector('.authors');
+  const authorsParams = calculateAuthorsParams(allAuthorsData);
+  console.log(authorsParams);
 
   /* [NEW] add html from allAuthors to authorList */
   let allAuthorsHTML = '';
-  for(let author in allAuthors){
-    allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ')</a></li>';
+  for(let author in allAuthorsData){
+    //allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ')</a></li>';
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAuthorData[author],
+      className: calculateAuthorClass(allAuthorsData[author], authorsParams)
+
+    });
   }
   authorList.innerHTML = allAuthorsHTML;
 }
