@@ -180,7 +180,7 @@ function generateTags(){
 
       /* add generated code to html variable */
 
-      html = html + linkHTMLtag;
+      html = html + linkHTML;
 
       /* [NEW] check if this link is NOT already in allTags */
       if(!allTags.hasOwnProperty(tag)){
@@ -361,7 +361,7 @@ function generateAuthors(){
     const linkHTMLData = {id: author};
     const linkHTML = templates.articleAuthorLink(linkHTMLData);
 
-    html = html + linkHTMLauthor;
+    html = html + linkHTML;
     console.log(html);
 
     wrapperAuthors.innerHTML = html;
