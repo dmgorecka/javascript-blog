@@ -400,7 +400,7 @@ function authorClickHandler(event){
 
   event.preventDefault();
   const clickedElement = this;
-  console.log('Tag was clicked!');
+  console.log('Author was clicked!');
 
   const href = clickedElement.getAttribute('href');
   console.log(href + ' został kliknięty');
