@@ -344,7 +344,7 @@ function calculateAuthorClass(count, params){
 
 function generateAuthors(){
   /* [NEW] create a new variable allAuthors with an empty object */
-  let allAuthorsData = {authors:[]};
+  let allAuthors = {};
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   console.log(articles);
@@ -361,10 +361,10 @@ function generateAuthors(){
     const linkHTMLData = {id: author};
     const linkHTML = templates.articleAuthorLink(linkHTMLData);
 
-    if(!allAuthorsData.hasOwnProperty(author)){
-      allAuthorsData[author] = 1;
+    if(!allAuthors.hasOwnProperty(author)){
+      allAuthors[author] = 1;
     } else {
-      allAuthorsData[author]++;
+      allAuthors[author]++;
     }
 
     html = html + linkHTML;
@@ -376,17 +376,18 @@ function generateAuthors(){
   /* END LOOP: for every article: */
   /* [NEW] find list of authors in right column */
   const authorList = document.querySelector('.authors');
-  const authorsParams = calculateAuthorsParams(allAuthorsData);
+  const authorsParams = calculateAuthorsParams(allAuthors);
   console.log(authorsParams);
+  const allAuthorsData = {authors: []};
 
   /* [NEW] add html from allAuthors to authorList */
   let allAuthorsHTML = '';
-  for(let author in allAuthorsData){
+  for(let author in allAuthors){
     //allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ')</a></li>';
     allAuthorsData.authors.push({
       author: author,
-      count: allAuthorsData[author],
-      className: calculateAuthorClass(allAuthorsData[author], authorsParams)
+      count: allAuthors[author],
+      className: calculateAuthorClass(allAuthors[author], authorsParams)
 
     });
   }
